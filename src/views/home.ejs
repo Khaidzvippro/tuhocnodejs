@@ -1,0 +1,76 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>Home Page</title>
+  </head>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+      background-color: rgb(222, 220, 220);
+    }
+    h2 {
+      padding: 10px;
+    }
+  </style>
+  <body>
+    <div class="topnav">
+      <a class="active" href="/">Home</a>
+      <a href="/create">Create User</a>
+    </div>
+
+    <div class="table-container">
+      <!-- <%=JSON.stringify(listUsers) %> -->
+      <h2>Liss User</h2>
+
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Name</th>
+          <th>City</th>
+          <th>Action</th>
+        </tr>
+        <!-- <% for(let i=0; i < listUsers.length; i++) { %>
+
+        <tr>
+          <td><%=listUsers[i].id%></td>
+          <td><%=listUsers[i].email%></td>
+          <td><%=listUsers[i].name%></td>
+          <td><%=listUsers[i].city%></td>
+          <td>
+            <button>Edit</button>
+            <button>DELETE</button>
+          </td>
+        </tr>
+        <%} %> -->
+        <% listUsers.forEach(function(user){ %>
+        <tr>
+          <td><%=user.id%></td>
+          <td><%=user.email%></td>
+          <td><%=user.name%></td>
+          <td><%=user.city%></td>
+          <td>
+            <button><a href="/update/<%=user.id%>">Edit</a></button>
+            <form action="/delete-user/<%=user.id%>" method="post">
+              <button>DELETE</button>
+            </form>
+          </td>
+        </tr>
+        <% })%>
+      </table>
+    </div>
+  </body>
+</html>
